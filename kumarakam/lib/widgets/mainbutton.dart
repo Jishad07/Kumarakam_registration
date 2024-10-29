@@ -5,11 +5,15 @@ import 'apptext_widget.dart';
 
 class MainButton extends StatelessWidget {
   String tittle;
+  Color?textcolor;
+  Color? backgroundColor;
    MainButton({
     super.key,
     required this.screenheight,
     required this.screenWidth,
-    required this.tittle
+    required this.tittle,
+    this.backgroundColor,
+    this.textcolor
   });
 
   final double screenheight;
@@ -20,10 +24,10 @@ class MainButton extends StatelessWidget {
     return Container(
       height: screenheight * 0.065,
       width: screenWidth * 0.9,
-      decoration:const  BoxDecoration(
+      decoration:  BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8.5)),
-
-          color: const Color.fromARGB(255, 0, 104, 55)),
+           
+          color: backgroundColor==null? const Color.fromARGB(255, 0, 104, 55):Color.fromRGBO(56, 154, 72, 0.3),),
       child: Center(
           child: AppText(
         tittle: tittle,

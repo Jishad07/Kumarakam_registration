@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kumarakam/screens/register_screen.dart';
 import 'package:kumarakam/widgets/apptext_widget.dart';
 import 'package:kumarakam/widgets/mainbutton.dart';
 
@@ -11,11 +12,12 @@ class SearchPage extends StatelessWidget {
      final screenheight=MediaQuery.of(context).size.height;
     final screenWidth=MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar:AppBar(backgroundColor: Colors.white ,) ,
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(children: [
-          Row(   
+      // appBar:AppBar(backgroundColor: Colors.white ,) ,
+      body: Column(children: [
+        SizedBox(height: screenheight*0.09,),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14 ),
+          child: Row(   
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
@@ -23,10 +25,13 @@ class SearchPage extends StatelessWidget {
              height: 20,)
             ],
           ),
-
-          SizedBox(height: screenheight*0.03,),
-            
-           Row(
+        ),
+      
+        SizedBox(height: screenheight*0.03,),
+          
+         Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 14),
+           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
@@ -48,9 +53,12 @@ class SearchPage extends StatelessWidget {
                   child: Center(child: AppText(tittle: "Search", fs: 14,textcolor: Colors.white,)),
                 )
             ],
-          ),
-          SizedBox(height: screenheight*0.03   ,),
-          Row(
+                   ),
+         ),
+        SizedBox(height: screenheight*0.03   ,),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(tittle: "sort by:", fs: 14 ),
@@ -77,10 +85,13 @@ class SearchPage extends StatelessWidget {
               )
             ],
           ),
-          Divider(),
-          Expanded(
-            child: ListView.separated(
-            itemBuilder: (context, index) => Card(
+        ),
+        Divider(),
+        Expanded(
+          child: ListView.separated(
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: Card(
               
               child: Column(
                 children: [
@@ -106,7 +117,7 @@ class SearchPage extends StatelessWidget {
                              Icon(Icons.people,color: Colors.red[300],size: 14,),
                            AppText(tittle: "Jishad",fs: 12,textcolor:  Color.fromARGB(127, 0, 0, 0), ),
                          
-
+                  
                           ],
                         ),
                         )
@@ -132,13 +143,14 @@ class SearchPage extends StatelessWidget {
             
             ],
             ),
-            ), 
-            separatorBuilder:(context, index) => SizedBox(height: 10,), 
-            itemCount: 3)),
-            MainButton(tittle: "Register Now ", screenheight: screenheight, screenWidth: screenWidth)
-        ],),
-        
-      )
+            ),
+          ), 
+          separatorBuilder:(context, index) => SizedBox(height: 10,), 
+          itemCount: 3)),
+          GestureDetector(
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>RegisterScreen())),
+            child: MainButton(tittle: "Register Now ", screenheight: screenheight, screenWidth: screenWidth))
+      ],)
       ); 
   }
 }

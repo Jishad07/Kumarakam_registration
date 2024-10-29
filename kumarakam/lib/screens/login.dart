@@ -43,6 +43,7 @@ class LogInPage extends StatelessWidget {
                   ),
                  const  CustomTextFormField(
                     label: "Email",
+                    hintlabal: "Enter your email",
                     obscureText: false,
                   ),
                 const  SizedBox(
@@ -57,7 +58,7 @@ class LogInPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>const SearchPage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const SearchPage()));
                     },
                     child: MainButton(tittle: "Login", screenheight: screenheight, screenWidth: screenWidth)),
                   SizedBox(height: screenheight*0.05,),

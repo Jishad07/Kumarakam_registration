@@ -3,7 +3,11 @@ import 'package:flutter/widgets.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String label;
+  final String? hintlabal;
   final bool obscureText;
+  final Icon? lasticon;
+  final Widget? suffixIcon;
+  
   final TextEditingController? controller;
 
   const CustomTextFormField({
@@ -11,32 +15,44 @@ class CustomTextFormField extends StatelessWidget {
     required this.label,
     this.obscureText = false,
     this.controller,
+     this.hintlabal,
+     this.lasticon,
+     this.suffixIcon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(fontSize: 12, color: Colors.black),
-        ),
-        SizedBox(height: 8), // Space between label and field
-        TextFormField(
-          controller: controller,
-          obscureText: obscureText,
-          decoration:const  InputDecoration(
-            hintText: "Enter your email",
-            hintStyle: TextStyle(fontSize: 12,),
-            border: OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(10))),
-            
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue, width: 2.0),
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Text(
+              label,
+              style:const TextStyle(fontSize: 12, color: Colors.black),
             ),
           ),
-        ),
-      ],
+         const SizedBox(height: 0), // Space between label and field
+          TextFormField(
+            controller: controller,
+            obscureText: obscureText,
+            decoration:  InputDecoration(
+              
+              hintText: hintlabal,
+              hintStyle: const TextStyle(fontSize: 12,),
+              border:const OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(10))),
+              
+              focusedBorder:const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue, width: 2.0),
+              ),
+              suffixIcon: suffixIcon
+            ),
+            
+          ),
+          SizedBox(height: 10,)
+        ],
+      ),
     );
   }
 }
