@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String label;
   final String? hintlabal;
   final bool obscureText;
-  final Icon? lasticon;
   final Widget? suffixIcon;
-  
+  final String? Function(String?)? validator;
+  final FocusNode? focusNode;
   final TextEditingController? controller;
 
   const CustomTextFormField({
@@ -15,9 +14,10 @@ class CustomTextFormField extends StatelessWidget {
     required this.label,
     this.obscureText = false,
     this.controller,
-     this.hintlabal,
-     this.lasticon,
-     this.suffixIcon,
+    this.hintlabal,
+    this.suffixIcon,
+    this.validator,
+    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -30,27 +30,30 @@ class CustomTextFormField extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8),
             child: Text(
               label,
-              style:const TextStyle(fontSize: 12, color: Colors.black),
+              style: const TextStyle(fontSize: 12, color: Colors.black),
             ),
           ),
-         const SizedBox(height: 0), // Space between label and field
+          const SizedBox(height: 4), // Space between label and field
           TextFormField(
+            textInputAction: TextInputAction.done,
             controller: controller,
             obscureText: obscureText,
-            decoration:  InputDecoration(
-              
+            validator: validator,
+            focusNode: focusNode,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
               hintText: hintlabal,
-              hintStyle: const TextStyle(fontSize: 12,),
-              border:const OutlineInputBorder(borderRadius:BorderRadius.all(Radius.circular(10))),
-              
-              focusedBorder:const OutlineInputBorder(
+              hintStyle: const TextStyle(fontSize: 12),
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blue, width: 2.0),
               ),
-              suffixIcon: suffixIcon
+              suffixIcon: suffixIcon,
             ),
-            
           ),
-          SizedBox(height: 10,)
+          const SizedBox(height: 10),
         ],
       ),
     );

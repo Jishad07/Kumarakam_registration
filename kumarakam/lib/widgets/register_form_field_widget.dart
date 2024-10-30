@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'add_treatment_widget.dart';
-import 'apptext_widget.dart';
 import 'custom_textformfield.dart';
 import 'select_payment_option_widget.dart';
 import 'select_treatment_time_widget.dart';
@@ -16,14 +15,19 @@ class RegisterFormFieldWidgets extends StatelessWidget {
 
   final double screenheight;
   final double screenWidth;
-
+ 
   @override
   Widget build(BuildContext context) {
+
+    
+     TextEditingController name=TextEditingController();
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: ListView(children: [
-          const CustomTextFormField(
+           CustomTextFormField(
+           
+            controller: name,
             label: "Name",
             hintlabal: "Enter your full name",
             obscureText: false,

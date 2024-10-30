@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kumarakam/screens/login.dart';
 
 import 'package:kumarakam/screens/splashscreen.dart';
 

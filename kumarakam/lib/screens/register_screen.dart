@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kumarakam/widgets/apptext_widget.dart';
 import 'package:kumarakam/widgets/mainbutton.dart';
 import '../widgets/register_form_field_widget.dart';
+import 'patient_record.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -44,6 +45,9 @@ class RegisterScreen extends StatelessWidget {
           Padding(
               padding: EdgeInsets.all(15),
               child: GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const PatientRecord()));
+                },
                   child: MainButton(
                       screenheight: screenheight,
                       screenWidth: screenWidth,
