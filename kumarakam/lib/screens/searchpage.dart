@@ -12,7 +12,6 @@ class SearchPage extends StatelessWidget {
      final screenheight=MediaQuery.of(context).size.height;
     final screenWidth=MediaQuery.of(context).size.width;
     return Scaffold(
-      // appBar:AppBar(backgroundColor: Colors.white ,) ,
       body: Column(children: [
         SizedBox(height: screenheight*0.09,),
         Padding(

@@ -46,7 +46,9 @@ class RegisterScreen extends StatelessWidget {
               padding: EdgeInsets.all(15),
               child: GestureDetector(
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const PatientRecord()));
+                  if(registorformKey.currentState!.validate()){
+                 Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>PatientRecord ()));
+                  }
                 },
                   child: MainButton(
                       screenheight: screenheight,

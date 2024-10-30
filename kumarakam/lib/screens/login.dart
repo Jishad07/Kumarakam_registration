@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kumarakam/screens/searchpage.dart';
 import 'package:kumarakam/widgets/apptext_widget.dart';
+import 'package:provider/provider.dart';
+import '../services/authentication_provider.dart';
 import '../widgets/custom_textformfield.dart';
 import '../widgets/mainbutton.dart';
 
@@ -24,15 +26,18 @@ class _LogInPageState extends State<LogInPage> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: true, // Allow the UI to adjust when keyboard appears
-      body: ListView( // Use ListView instead of SingleChildScrollView
+      resizeToAvoidBottomInset:
+          true, 
+      body: ListView(
+       
         children: [
           Container(
             height: screenHeight * 0.3,
             width: screenWidth,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/logo_make_11_06_2023_115 1.png"),
+                image:
+                    AssetImage("assets/images/logo_make_11_06_2023_115 1.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -45,7 +50,9 @@ class _LogInPageState extends State<LogInPage> {
             child: Column(
               children: [
                 SizedBox(height: screenHeight * 0.03),
-                AppText(tittle: "Login Or Register To Book Your Appointments", fs: 26),
+                AppText(
+                    tittle: "Login Or Register To Book Your Appointments",
+                    fs: 26),
                 SizedBox(height: screenHeight * 0.03),
                 Form(
                   key: formKey,
@@ -54,16 +61,12 @@ class _LogInPageState extends State<LogInPage> {
                       CustomTextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Please enter your email";
+                            return "Please enter your username";
                           }
-                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                            return 'Please enter a valid email';
-                          }
-                        
                         },
                         focusNode: emailFocusNode,
                         controller: _emailController,
-                        label: "Email",
+                        label: "UserName",
                         hintlabal: "Enter your email",
                         obscureText: false,
                       ),
@@ -73,26 +76,43 @@ class _LogInPageState extends State<LogInPage> {
                           if (value == null || value.isEmpty) {
                             return "Please enter your password";
                           }
-                        
                         },
                         focusNode: passwordFocusNode,
                         controller: _passwordController,
                         label: "Password",
                         hintlabal: "Enter your password",
-                        obscureText: true, // Typically passwords should be obscured
+                        obscureText: true,
                       ),
                       SizedBox(height: screenHeight * 0.1),
                       GestureDetector(
-                        onTap: () {
-                       
-                        if(formKey.currentState!.validate()&&_emailController.text=="jishadajd1707@email.com"&&_passwordController.text=="1111111"){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>SearchPage()));
-                        }
+                        onTap: () async {
+                          final success = await Provider.of<AuthProvider>(
+                                  context,
+                                  listen: false)
+                              .login(_emailController.text,
+                                  _passwordController.text);
+                          if (success) {
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (context) =>
+                                  SearchPage(), // Your home page
+                            ));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('Login failed!'),
+                            ));
+                          }
                         },
-                        child: MainButton(tittle: "Login", screenheight: screenHeight, screenWidth: screenWidth),
+                        child: MainButton(
+                            tittle: "Login",
+                            screenheight: screenHeight,
+                            screenWidth: screenWidth),
                       ),
                       SizedBox(height: screenHeight * 0.05),
-                      AppText(tittle: "By creating or logging into an account you are agreeing with our terms and conditions and privacy policy", fs: 12)
+                      AppText(
+                          tittle:
+                              "By creating or logging into an account you are agreeing with our terms and conditions and privacy policy",
+                          fs: 12)
                     ],
                   ),
                 ),

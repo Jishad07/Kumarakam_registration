@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "244942818726",
+    "project_id": "appoinment-kumarakom",
+    "storage_bucket": "appoinment-kumarakom.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244942818726:android:12f97dbe9aa17d6ba65367",
+        "android_client_info": {
+          "package_name": "com.example.kumarakam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA3qIB-YexfYyu_yhSd8npO027ljaO0qE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244942818726:android:50a338152de0b5dfa65367",
+        "android_client_info": {
+          "package_name": "com.kumarakam.appoinment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA3qIB-YexfYyu_yhSd8npO027ljaO0qE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
