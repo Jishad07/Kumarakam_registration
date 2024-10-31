@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kumarakam/screens/searchpage.dart';
+import 'package:kumarakam/screens/homepage.dart';
 import 'package:kumarakam/widgets/apptext_widget.dart';
 import 'package:provider/provider.dart';
 import '../services/authentication_provider.dart';
@@ -86,7 +86,9 @@ class _LogInPageState extends State<LogInPage> {
                       SizedBox(height: screenHeight * 0.1),
                       GestureDetector(
                         onTap: () async {
-                          final success = await Provider.of<AuthProvider>(
+
+                          if(formKey.currentState!.validate()){
+                              final success = await Provider.of<AuthProvider>(
                                   context,
                                   listen: false)
                               .login(_emailController.text,
@@ -95,13 +97,16 @@ class _LogInPageState extends State<LogInPage> {
                             Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(
                               builder: (context) =>
-                                  SearchPage(), // Your home page
+                               const   Homepage(), // Your home page
                             ));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Login failed!'),
-                            ));
+                            )
+                            );
+                        }
                           }
+                         
                         },
                         child: MainButton(
                             tittle: "Login",

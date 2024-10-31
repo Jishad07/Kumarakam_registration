@@ -4,8 +4,8 @@ import 'package:kumarakam/screens/register_screen.dart';
 import 'package:kumarakam/widgets/apptext_widget.dart';
 import 'package:kumarakam/widgets/mainbutton.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
+class Homepage extends StatelessWidget {
+  const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
